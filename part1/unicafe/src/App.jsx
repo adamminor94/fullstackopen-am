@@ -6,27 +6,58 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const handleGood = () => setGood({good: +good+1})
-  const handleNeutral = () => setNeutral({neutral: +neutral+1})
-  const handleBad = () => setBad({bad: +bad+1})
+  const [all, setAll] = useState([])
+
+  const [average, setAverage] = useState(0)
+  const [positive, setPositive] = useState(0)
+
+  const handleGood = () => {
+    setAll(all.concat(1))
+    setGood(+good + 1)
+    computeAverageAndPositive()
+
+  }
+  const handleNeutral = () => {
+    setAll(all.concat(0))
+    setNeutral(+neutral + 1)
+    computeAverageAndPositive()
+  }
+  const handleBad = () => {
+    setAll(all.concat(-1))
+    setBad(+bad + 1)
+    computeAverageAndPositive()
+  }
+  const computeAverageAndPositive = () => {
+    let sum = 0;
+    all.forEach( num => {
+      sum+=num
+    })
+    setAverage(+sum / all.length)
+    setPositive(all.filter(num => +num === 1).length / all.length)
+
+  }
 
   return (
     <div>
       <h1>give feedback</h1>
-      <br/>
+      <br />
       <div>
-      <button onClick={() => setGood(good + 1)}>good</button>
-      <button onClick={() => setNeutral(neutral +1)}>neutral</button>
-      <button onClick={() => setBad(bad+1)}>bad</button>
+        <button onClick={handleGood}>good</button>
+        <button onClick={handleNeutral}>neutral</button>
+        <button onClick={handleBad}>bad</button>
       </div>
       <h1>statistics</h1>
-      <br/>
+      <br />
       <div>
         good {good}
-        <br/>
+        <br />
         neutral {neutral}
-        <br/>
+        <br />
         bad {bad}
+        <br />
+        average {average}
+        <br/>
+        positive {positive}
 
       </div>
     </div>
