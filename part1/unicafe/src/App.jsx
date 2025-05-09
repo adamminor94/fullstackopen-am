@@ -5,19 +5,21 @@ const Statistics = props => {
     return(<div>No feedback Given</div>)
   }
   return (
-  <div>
+  <table>
+    <tbody>
       <StatisticsLine text="good" num={props.good}/>
       <StatisticsLine text="neutral" num={props.neutral}/>
       <StatisticsLine text="bad" num={props.bad}/>
       <StatisticsLine text="all" num={props.all.length}/>
       <StatisticsLine text="average" num={props.average}/>
       <StatisticsLine text="positive" num={props.positive}/>
-  </div>
+      </tbody>
+  </table>
 )
 }
 
 const StatisticsLine = props => (
-  <div>{props.text} {props.num}</div>
+  <tr><td>{props.text}</td><td>{props.num}</td></tr>
 )
 
 const Button = props => (
