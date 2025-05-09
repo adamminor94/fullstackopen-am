@@ -5,36 +5,48 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-
   const [all, setAll] = useState([])
-
   const [average, setAverage] = useState(0)
   const [positive, setPositive] = useState(0)
 
   const handleGood = () => {
-    setAll(all.concat(1))
+    const newAll = all.concat(1)
+    setAll(newAll)
     setGood(+good + 1)
-    computeAverageAndPositive()
+    setAverage(getAverage(newAll))
+    setPositive(getPositive(newAll))
 
   }
   const handleNeutral = () => {
-    setAll(all.concat(0))
+    const newAll = all.concat(0)
+    setAll(newAll)
     setNeutral(+neutral + 1)
-    computeAverageAndPositive()
+    setAverage(getAverage(newAll))
+    setPositive(getPositive(newAll))
   }
   const handleBad = () => {
-    setAll(all.concat(-1))
+    const newAll = all.concat(-1)
+    setAll(newAll)
     setBad(+bad + 1)
-    computeAverageAndPositive()
+    setAverage(getAverage(newAll))
+    setPositive(getPositive(newAll))
   }
-  const computeAverageAndPositive = () => {
+
+  function getAverage(all){
+    console.log(all)
     let sum = 0;
     all.forEach( num => {
       sum+=num
     })
-    setAverage(+sum / all.length)
-    setPositive(all.filter(num => +num === 1).length / all.length)
-
+    return(+sum / all.length)
+  }
+  function getPositive(all){
+    console.log(all)
+    let sum = 0;
+    all.forEach( num => {
+      sum+=num
+    })
+    return(all.filter(num => +num === 1).length / all.length)
   }
 
   return (
@@ -55,6 +67,8 @@ const App = () => {
         <br />
         bad {bad}
         <br />
+        all {all.length}
+        <br/>
         average {average}
         <br/>
         positive {positive}
