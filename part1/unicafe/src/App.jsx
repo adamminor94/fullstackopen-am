@@ -1,5 +1,27 @@
 import { useState } from 'react'
 
+const Statistics = props => (
+  <div>
+    <h1>statistics</h1>
+    <br />
+    <div>
+      good {props.good}
+      <br />
+      neutral {props.neutral}
+      <br />
+      bad {props.bad}
+      <br />
+      all {props.all.length}
+      <br />
+      average {props.average}
+      <br />
+      positive {props.positive}
+
+    </div>
+  </div>
+)
+
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -32,21 +54,21 @@ const App = () => {
     setPositive(getPositive(newAll))
   }
 
-  function getAverage(all){
+  function getAverage(all) {
     console.log(all)
     let sum = 0;
-    all.forEach( num => {
-      sum+=num
+    all.forEach(num => {
+      sum += num
     })
-    return(+sum / all.length)
+    return (+sum / all.length)
   }
-  function getPositive(all){
+  function getPositive(all) {
     console.log(all)
     let sum = 0;
-    all.forEach( num => {
-      sum+=num
+    all.forEach(num => {
+      sum += num
     })
-    return(all.filter(num => +num === 1).length / all.length)
+    return (all.filter(num => +num === 1).length / all.length)
   }
 
   return (
@@ -58,24 +80,12 @@ const App = () => {
         <button onClick={handleNeutral}>neutral</button>
         <button onClick={handleBad}>bad</button>
       </div>
-      <h1>statistics</h1>
-      <br />
-      <div>
-        good {good}
-        <br />
-        neutral {neutral}
-        <br />
-        bad {bad}
-        <br />
-        all {all.length}
-        <br/>
-        average {average}
-        <br/>
-        positive {positive}
-
-      </div>
+      <Statistics good={good} neutral={neutral} bad={bad}
+        all={all} average={average} positive={positive}></Statistics>
     </div>
   )
 }
+
+
 
 export default App
