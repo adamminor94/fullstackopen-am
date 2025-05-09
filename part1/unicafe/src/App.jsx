@@ -12,14 +12,14 @@ const App = () => {
 
   return (
     <div>
-      <header>give feedback</header>
+      <h1>give feedback</h1>
       <br/>
       <div>
       <button onClick={() => setGood(good + 1)}>good</button>
       <button onClick={() => setNeutral(neutral +1)}>neutral</button>
       <button onClick={() => setBad(bad+1)}>bad</button>
       </div>
-      <header>statistics</header>
+      <h1>statistics</h1>
       <br/>
       <div>
         good {good}
